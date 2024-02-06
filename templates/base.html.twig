@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Accueil {% endblock %} Présentation des Arcs et personnages de One Piece </title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('assets/css/fichier.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+         
+        <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>
+        {% block javascripts %}{% endblock %}
+        <script src="{{ asset('assets/js/fichier.js') }}" defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+    </head>
+    <style>
+        #btnScrollToTop{
+            position: fixed;
+            right: 10px;
+            left: 10px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #e62739;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+            color: #ffffff;
+            outline: none;
+            cursor: pointer;
+            border: none;
+        }
+
+        #btnScrollToTop:active{
+            background: #cc2333;
+            
+        }
+
+        .fa{
+            padding: 20px;
+            font-size: 30px;
+            width: 30px;
+            text-align: center;
+            text-decoration: none;
+            margin: 5px 2px;
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+  
+        .fa:hover{
+            opacity: 0.7;
+        }
+
+        
+        .fa-twitter{
+            background: #55ACEE;
+            color: white;
+        }
+    </style>
+    <body>
+        {% include "_head_footer/_head.html.twig" %}  
+
+        <button id="btnScrollToTop">
+            <i class="material-icons">arrow_upwards</i>
+        </button>
+
+        <script>
+            const btnScrollToTop = document.querySelector("#btnScrollToTop");
+
+            btnScrollToTop.addEventListener("click", function(){
+                $("html,body").animate({ scrollTop: 0}, "slow");
+                });
+        </script>
+
+        {% block body %}{% endblock %}
+
+        {% include "_head_footer/_footer.html.twig" %}  
+        
+    </body>
+</html>

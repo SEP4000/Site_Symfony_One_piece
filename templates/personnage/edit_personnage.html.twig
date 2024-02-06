@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Modification d'un Personnage {% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h1> Modifier un Personnage </h1>
+                {% include "personnage/_form_personnage.html.twig" with {'button_label': 'Modifier'}  %}
+                <a href="{{ path('admin_personnage_index') }}">Retour à la liste des Arcs </a>
+            </div>
+        </section>
+    </main>
+{% endblock %}

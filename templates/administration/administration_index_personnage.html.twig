@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Liste des Personnages {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            {% include "_head_footer/_admin_head.html.twig" %}
+            <main class="col-9 border border-light bg-white p-2">
+                <h1>Liste des Personnages</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Préom</th>
+                            <th>Age</th>
+                            <th>Arc<th>
+                            <th>Apparition dans le manga</th>
+                            <th>Apparition dans l'anime</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for personnage in personnages %}
+                            <tr>
+                                <td>{{ personnage.id }}</td>
+                                <td>{{ personnage.nomP }}</td>
+                                <td>{{ personnage.prenomP }}</td>
+                                <td>{{ personnage.age }}</td>
+                                <td>{{ personnage.arc }}</td>
+                                <td>{{ personnage.apparitionManga }}</td>
+                                <td>{{ personnage.apparitionAnime }}</td>
+                                <td>{{ personnage.description }}</td>
+                                <td>
+                                    <a href="{{ path('personnage_edit_personnage',{id: personnage.id}) }}" class="btn btn-warning mt-3">Modifier</a>
+                                    <a href="{{ path('personnage_delete_personnage',{id: personnage.id}) }}" class="btn btn-warning mt-3" onclick="return confirm('Voulez vous vraiment supprimer ce personnage ?')">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+{% endblock %}

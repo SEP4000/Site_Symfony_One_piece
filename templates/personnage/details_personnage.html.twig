@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Détails du Personnage {{personnage.nomP}} {{personnage.prenomP}} {% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h1> Détails de l'Arc de {{personnage.nomP}} {{ personnage.prenomP }} </h1>
+            </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th> Nom </th>
+                            <th> Prénom </th>
+                            <th> Age </th>
+                            <th> Arc </th>
+                            <th> chapitres de l'apparition du Personnage dans le manga </th>
+                            <th> Episodes de l'apparition du Personnage dans l'anime </th>
+                            <th> Description </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ personnage.nomP }}</td>
+                            <td>{{ personnage.prenomP }}</td>
+                            <td>{{ personnage.age }}</td>
+                            <td>{{ personnage.arc}}</td>
+                            <td>{{ personnage.apparitionManga }}</td>
+                            <td>{{ personnage.apparitionAnime }}</td>
+                            <td>{{ personnage.description }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            <h2> Arc lié au personnage </h2>
+            <div class="col-4 mt-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ personnage.arc.nomA }}</h2>
+                        <a href="{{ path('arc_details', {'nom_a': personnage.arc.nomA}) }}" class="btn btn-primary"> Voir l'Arc</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="comment-form-warp pt-5">
+                <h3 class="mb-5"> Laisser un commentaire </h3>
+                {% if app.user %}
+                    {{ form_start(commentForm) }}
+                        {{ form_widget(commentForm.content, {'attr':{'class':'form form-control','placeholder':'Commentaire'}}) }}
+                        <input type="submit" value ="Commenter" class="btn btn-primary mt-3">
+                    {{ form_end(commentForm) }}
+                {% else %}
+                    Vous devez être connecté afin de pouvoir laisser un commentaire <a href="{{ path('app_login') }}">Connexion</a>
+                {% endif %}
+                <ul class="comment-list">
+                    {% for comment in comments %}
+                        <li class="comment">
+                            <div class="comment-body">
+                                <h3>{{ comment.author.username }}</h3>
+                                <div class="meta">{{  comment.createdAt|ago }}</div>
+                                <p>{{ comment.content }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+    </main>
+{% endblock %}

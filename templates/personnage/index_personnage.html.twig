@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Liste des Personnages {% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h1> Liste des Personnages  </h1>
+            </div>
+            {% for personnage in pagination %}
+                <div class="col-4 mt-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ personnage.nomP }} {{ personnage.prenomP }}</h2>
+                            <a href="{{ path('personnage_details', {'prenom_p': personnage.prenomP}) }}" class="btn btn-primary"> Voir le Personnage</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {{ knp_pagination_render(pagination) }}
+        </section>
+    </main>
+{% endblock %}

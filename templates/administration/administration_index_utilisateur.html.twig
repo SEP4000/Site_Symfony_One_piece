@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Liste des Utilisateurs {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            {% include "_head_footer/_admin_head.html.twig" %}
+            <main class="col-9 border border-light bg-white p-2">
+                <h1>Liste des Utilisateurs</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Pseudo</th>
+                            <th>Rôle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for utilisateur in utilisateurs %}
+                            <tr>
+                                <td>{{ utilisateur.id }}</td>
+                                <td>{{ utilisateur.username }}</td>
+                                <td>
+                                    {% for role in utilisateur.roles %}
+                                        {% if role == "ROLE_ADMIN" %}
+                                            {% set nom = "Administrateur" %}
+                                            {% set color = "warning" %}
+                                        {% elseif role == "ROLE_SUPER_ADMIN" %}
+                                            {% set nom = "chef des Administrateurs" %}
+                                            {% set color = "danger" %}
+                                        {% else %}
+                                            {% set nom = "Membre" %}
+                                            {% set color = "success" %}
+                                        {% endif %}
+                                        <span class="badge bg-{{ color }}">{{ nom }}</span>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+{% endblock %}

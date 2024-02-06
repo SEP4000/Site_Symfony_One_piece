@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Détails de l'Arc {{arc.nomA}} {% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h1> Détails de l'Arc {{arc.nomA}} </h1>
+            </div>
+
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th> Nom de l'Arc</th>
+                            <th> chapitres de l'Arc dans le manga</th>
+                            <th> Episodes de l'Arc dans l'anime</th>
+                            <th> Description de l'Arc</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ arc.nomA }}</td>
+                            <td>{{ arc.nbrChap }}</td>
+                            <td>{{ arc.nbrAnime }}</td>
+                            <td>{{ arc.desription }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2> Personnages liés à l'arc </h2>
+                {% for personnage  in arc.personnage %}
+                    <div class="col-4 mt-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">{{ personnage.nomP }} {{ personnage.prenomP }}</h2>
+                                <a href="{{ path('personnage_details', {'prenom_p': personnage.prenomP}) }}" class="btn btn-primary"> Voir le Personnage</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <div class="comment-form-warp pt-5">
+                    <h3 class="mb-5"> Laisser un commentaire </h3>
+                    {% if app.user %}
+                        {{ form_start(commentForm) }}
+                            {{ form_widget(commentForm.content, {'attr':{'class':'form form-control','placeholder':'Commentaire'}}) }}
+                            <input type="submit" value ="Commenter" class="btn btn-primary mt-3">
+                        {{ form_end(commentForm) }}
+                    {% else %}
+                        Vous devez être connecté afin de pouvoir laisser un commentaire <a href="{{ path('app_login') }}">Connexion</a>
+                    {% endif %}
+                    <ul class="comment-list">
+                        {% for comment in comments %}
+                            <li class="comment">
+                                <div class="comment-body">
+                                    <h3>{{ comment.author.username }}</h3>
+                                    <div class="meta">{{  comment.createdAt|ago }}</div>
+                                    <p>{{ comment.content }}</p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+        </section>
+    </main>
+{% endblock %}

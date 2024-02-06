@@ -1,0 +1,10 @@
+{{ form_start(Personnageform) }}
+    {{ form_row(Personnageform.nom_p) }}
+    {{ form_row(Personnageform.prenom_p) }}
+    {{ form_row(Personnageform.age) }}
+    {{ form_row(Personnageform.apparition_manga) }}
+    {{ form_row(Personnageform.apparition_anime) }}
+    {{ form_row(Personnageform.description) }}
+    {{ form_row(Personnageform.arc) }}
+    <button type="submit" class="btn btn-primary"> {{ button_label|default('Ajouter') }} </button>
+{{ form_end(Personnageform) }}

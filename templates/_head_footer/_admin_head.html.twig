@@ -1,0 +1,28 @@
+<aside class="col-3 border border-light bg-white p-2">
+    <article class="card mb-3">
+        <div class="card-header">
+            Arcs
+        </div>
+        <div class="card-body">
+            <p><a href="{{ path('admin_arc_index') }}" class="text-success" > Liste des Arcs </a></p>
+            <p><a href="{{ path('arc_add_arc') }}" class="text-danger"> Ajouter un Arc </a></p>
+        </div>
+    </article>
+    <article class="card mb-3">
+        <div class="card-header">
+            Personnages
+        </div>
+        <div class="card-body">
+            <p><a href="{{ path('admin_personnage_index') }}" class="text-success"> Liste des Personnages </a></p>
+            <p><a href="{{ path('personnage_add_personnage') }}" class="text-danger"> Ajouter un Personnage </a></p>
+        </div>
+    </article>
+    <article class="card mb-3">
+        <div class="card-header">
+            Utilisateur
+        </div>
+        <div class="card-body">
+            <p><a href="{{ path('admin_utilisateur_index') }}" class="text-success"> Liste des Utilisateurs </a></p>
+        </div>
+    </article>
+</aside>

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Ajout d'un Personnage {% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h1> Ajouter un Personnage </h1>
+                {% include "personnage/_form_personnage.html.twig" %}
+                <a href="{{ path('admin_personnage_index') }}">Retour à la liste des Personnage </a>
+            </div>
+        </section>
+    </main>
+{% endblock %}

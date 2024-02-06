@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Liste des Arcs {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            {% include "_head_footer/_admin_head.html.twig" %}
+            <main class="col-9 border border-light bg-white p-2">
+                <h1>Liste des Arcs</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>chapitres dans le manga</th>
+                            <th>Episodes dans l'anime</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for arc in arcs %}
+                            <tr>
+                                <td>{{ arc.id }}</td>
+                                <td>{{ arc.nomA }}</td>
+                                <td>{{ arc.nbrChap }}</td>
+                                <td>{{ arc.nbrAnime }}</td>
+                                <td>{{ arc.desription }}</td>
+                                <td>
+                                    <a href="{{ path('arc_edit_arc',{id: arc.id}) }}" class="btn btn-warning mt-3">Modifier</a>
+                                    <a href="{{ path('arc_delete_arc',{id: arc.id}) }}" class="btn btn-warning mt-3" onclick="return confirm('Voulez vous vraiment supprimer cet arc ?')">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+    
+{% endblock %}
